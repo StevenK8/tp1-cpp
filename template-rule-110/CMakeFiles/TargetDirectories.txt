@@ -1,0 +1,3 @@
+/home/ubuntu/code/cpp/tp-note-1/template-rule-110/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/code/cpp/tp-note-1/template-rule-110/CMakeFiles/edit_cache.dir
+/home/ubuntu/code/cpp/tp-note-1/template-rule-110/CMakeFiles/rule-110.dir

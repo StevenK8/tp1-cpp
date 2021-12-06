@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/code/cpp/tp-note-1/constexpr-conway/main.cpp
+chrono
+-
+iostream
+-
+thread
+-
+conway.hpp
+-
+
+include/conway.hpp
+array
+-
+cstddef
+-
+cstdint
+-
+string
+-
+

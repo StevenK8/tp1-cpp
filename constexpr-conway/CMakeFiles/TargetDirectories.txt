@@ -1,0 +1,3 @@
+/home/ubuntu/code/cpp/tp-note-1/constexpr-conway/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/code/cpp/tp-note-1/constexpr-conway/CMakeFiles/edit_cache.dir
+/home/ubuntu/code/cpp/tp-note-1/constexpr-conway/CMakeFiles/conway.dir

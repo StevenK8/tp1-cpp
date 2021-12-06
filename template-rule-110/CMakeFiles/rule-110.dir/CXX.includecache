@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/code/cpp/tp-note-1/template-rule-110/main.cpp
+rule-110.hpp
+-
+cassert
+-
+iostream
+-
+string
+-
+
+include/rule-110.hpp
+array
+-
+cstddef
+-
+cstdint
+-
+string
+-
+type_traits
+-
+utility
+-
+

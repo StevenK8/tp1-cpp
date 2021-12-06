@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/ubuntu/code/cpp/tp-note-1/constexpr-conway",
+  "command": "/usr/bin/c++  -I/home/ubuntu/code/cpp/tp-note-1/constexpr-conway/include -Wall -Wextra -Werror -Wnull-dereference -Wold-style-cast -Wdouble-promotion -Wshadow -std=gnu++2a -o CMakeFiles/conway.dir/main.cpp.o -c /home/ubuntu/code/cpp/tp-note-1/constexpr-conway/main.cpp",
+  "file": "/home/ubuntu/code/cpp/tp-note-1/constexpr-conway/main.cpp"
+}
+]
