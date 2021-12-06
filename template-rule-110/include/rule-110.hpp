@@ -66,13 +66,26 @@ namespace rule110
   {
     static_assert(N >= 3, "Un pattern doit contenir au moins 3 etats.");
     pattern_t<N> next_pattern = pattern;
-    for (size_t i = 1; i < N - 1; i++)
+    for (size_t i = 0; i < N; i++)
     {
-      subpattern_t subpattern = {pattern[i - 1], pattern[i], pattern[i + 1]};
-      next_pattern[i] = apply_rule(rule, subpattern);
+      if(i == 0)
+      {
+        next_pattern[i] = apply_rule(rule, {0, pattern[i],
+                                             pattern[i + 1]});
+      }
+      else if(i == N-1)
+      {
+        next_pattern[i] = apply_rule(rule, {pattern[i - 1], pattern[i],
+                                             0});
+      }
+      else
+      {
+        next_pattern[i] = apply_rule(rule, {pattern[i - 1], pattern[i],
+                                             pattern[i + 1]});
+      }
     }
     // next_pattern[N - 2] = false;
-    next_pattern[N - 1] = false;
+    // next_pattern[N - 1] = false;
     // next_pattern[0] = true;
     // next_pattern[N] = false;
     return next_pattern;
