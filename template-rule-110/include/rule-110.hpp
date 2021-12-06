@@ -90,17 +90,17 @@ namespace rule110
   };
 
   // Convertit un pattern_t en template_pattern_t
-  // template <auto pattern> constexpr auto make_template_pattern() {
-  //   using Seq = std::make_index_sequence<pattern.size()>;
-
-  // }
+  template <auto pattern> constexpr auto make_template_pattern() {
+    using Seq = std::make_index_sequence<pattern.size()>;
+    return template_pattern_t(Seq{});
+  }
 
   /// Convertit un template_pattern_t en pattern_t
   template <bool... Cells>
   constexpr pattern_t<sizeof...(Cells)>
       make_pattern(template_pattern_t<Cells...>)
   {
-    return {Cells...};
+    // return {Cells...};
   }
 
   /// Print renvoie une std::string qui contient successivement pour chaque
@@ -121,7 +121,7 @@ namespace rule110
   std::string print(pattern_t<N> const &pattern)
   {
     std::string res;
-    for (size_t i = 0; i < N - 1; i++)
+    for (size_t i = 0; i < N; i++)
     {
       if (pattern[i])
         res += '#';
@@ -141,14 +141,16 @@ namespace rule110
   constexpr bool operator==(template_pattern_t<CellsA...>,
                             template_pattern_t<CellsB...>)
   {
-    int res = 0;
-    if (sizeof...(CellsA) != sizeof...(CellsB)){
+    if constexpr (sizeof...(CellsA) != sizeof...(CellsB))
+    {
       return false;
-    }else{
-      res += (CellsA == CellsB ? 1 : 0)...;
+    }
+    else
+    {
+      int res = 0;
+      ((res += (CellsA == CellsB ? 1 : 0)), ...);
       return res == sizeof...(CellsA);
     }
-    
   }
 
 } // namespace rule110
