@@ -37,7 +37,7 @@ namespace conway
   /// Une fonction qui init une grille de 80 * 80 avec un glider
   constexpr grid_t<80, 80> make_grid()
   {
-    conway::grid_t<80, 80> grid;
+    conway::grid_t<80, 80> grid = conway::grid_t<80, 80>();
 
     // Zero init
 
@@ -99,7 +99,7 @@ namespace conway
   /// Compte le nombre de voisins d'une cellule en supposant
   /// qu'elle ne puisse pas toucher un bord de la grille.
   template <size_t M, size_t N>
-  uint8_t inner_neighbor_count(grid_t<M, N> const &grid,
+  constexpr uint8_t inner_neighbor_count(grid_t<M, N> const &grid,
                                size_t i, size_t j)
   {
     uint8_t count = 0;
@@ -119,8 +119,8 @@ namespace conway
   /// Compte le nombre de voisins d'une cellule en supposant
   /// qu'elle puisse toucher un bord de la grille.
   template <size_t M, size_t N>
-  uint8_t outer_neighbor_count(const grid_t<M, N> &grid,
-                               size_t i, size_t j)
+  constexpr uint8_t outer_neighbor_count(const grid_t<M, N> &grid,
+                                         size_t i, size_t j)
   {
     uint8_t res = 0;
     for (size_t k = 0; k < 3; ++k)
@@ -164,13 +164,13 @@ namespace conway
   template <size_t M, size_t N>
   constexpr grid_t<M, N> conway(grid_t<M, N> const &grid)
   {
-    grid_t<M, N> new_grid;
+    grid_t<M, N> new_grid = grid_t<M, N>();
     //Iterate over the grid
     for (size_t i = 0; i < M; ++i)
     {
       for (size_t j = 0; j < N; ++j)
       {
-        if(i==0 || i==M-1 || j==0 || j==N-1)
+        if (i == 0 || i == M - 1 || j == 0 || j == N - 1)
         {
           new_grid[i][j] = outer_conway(grid, i, j);
         }
@@ -190,16 +190,16 @@ namespace conway
   // Faites en sorte que le code compile toujours
   // lorsqu'on de-commente le bloc suivant:
 
-  // template <auto grid_a, auto grid_b>
-  // constexpr bool b_follows_a()
-  // {
-  //   return grid_b == conway(grid_a);
-  // }
+  template <auto grid_a, auto grid_b>
+  constexpr bool b_follows_a()
+  {
+    return grid_b == conway(grid_a);
+  }
 
-  // conway::grid_t<80, 80> constexpr grid_a = conway::make_grid();
-  // conway::grid_t<80, 80> constexpr grid_b = conway::conway(grid_a);
+  conway::grid_t<80, 80> constexpr grid_a = conway::make_grid();
+  conway::grid_t<80, 80> constexpr grid_b = conway::conway(grid_a);
 
-  // static_assert(conway::b_follows_a<grid_a, grid_b>(),
-  //               "Impossible pour moi de laisser compiler ce code.");
+  static_assert(conway::b_follows_a<grid_a, grid_b>(),
+                "Impossible pour moi de laisser compiler ce code.");
 
 } // namespace conway
