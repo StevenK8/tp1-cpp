@@ -109,9 +109,9 @@ int main() {
   static_assert(!(rule110::template_pattern_t<false, true, false>{} ==
                   rule110::template_pattern_t<true, true, false, false>{}));
 
-  // static_assert(rule110::make_template_pattern<rule110::pattern_t<3>(
-  //                   {true, true, false})>() ==
-  //               rule110::template_pattern_t<true, true, false>{});
+  static_assert(rule110::make_template_pattern<rule110::pattern_t<3>(
+                    {true, true, false})>() ==
+                rule110::template_pattern_t<true, true, false>{});
 
   // La routourne
   auto state = pattern_0;

@@ -68,20 +68,20 @@ namespace rule110
     pattern_t<N> next_pattern = pattern;
     for (size_t i = 0; i < N; i++)
     {
-      if(i == 0)
+      if (i == 0)
       {
         next_pattern[i] = apply_rule(rule, {0, pattern[i],
-                                             pattern[i + 1]});
+                                            pattern[i + 1]});
       }
-      else if(i == N-1)
+      else if (i == N - 1)
       {
         next_pattern[i] = apply_rule(rule, {pattern[i - 1], pattern[i],
-                                             0});
+                                            0});
       }
       else
       {
         next_pattern[i] = apply_rule(rule, {pattern[i - 1], pattern[i],
-                                             pattern[i + 1]});
+                                            pattern[i + 1]});
       }
     }
     // next_pattern[N - 2] = false;
@@ -103,9 +103,15 @@ namespace rule110
   };
 
   // Convertit un pattern_t en template_pattern_t
-  template <auto pattern> constexpr auto make_template_pattern() {
+  template <auto pattern>
+  constexpr auto make_template_pattern()
+  {
     using Seq = std::make_index_sequence<pattern.size()>;
-    return template_pattern_t(Seq{});
+    return [&]<auto... val>(std::index_sequence<val...> const &)
+    {
+      return template_pattern_t<(pattern[val])...>{};
+    }
+    (Seq{});
   }
 
   /// Convertit un template_pattern_t en pattern_t
@@ -113,7 +119,7 @@ namespace rule110
   constexpr pattern_t<sizeof...(Cells)>
       make_pattern(template_pattern_t<Cells...>)
   {
-    // return {Cells...};
+    return pattern_t<sizeof...(Cells)>{Cells...};
   }
 
   /// Print renvoie une std::string qui contient successivement pour chaque
