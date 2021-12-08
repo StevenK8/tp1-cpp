@@ -82,7 +82,7 @@ namespace conway
   }
 
   /// Renvoie le nouvel etat d'une cellule en fonction de son nombre de voisins.
-  cell_state_t get_state(cell_state_t previous_state,
+  constexpr cell_state_t get_state(cell_state_t previous_state,
                          uint8_t neighbor_count)
   {
     if (previous_state == conway::alive)
